@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Navbar from './components/Navbar.js';
+import TextForm from './components/TextForm.js';
 
 function App() {
+  const [mode,changeMode] = useState("light");
+  const toggleMode = ()=>{
+    if (mode === 'light'){
+      changeMode("dark");
+      document.body.style.backgroundColor = "black";
+    }else{
+      changeMode("light");
+      document.body.style.backgroundColor = "white";
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This is Murtaza Hatim's website
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Navbar name="My Navbar" toggle={toggleMode} mode = {mode}/>
+    <TextForm mode = {mode}/>
+    </>
   );
 }
 
